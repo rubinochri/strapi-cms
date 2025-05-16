@@ -373,6 +373,35 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiAmministratoreAmministratore
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'amministratores';
+  info: {
+    displayName: 'Amministratore';
+    pluralName: 'amministratores';
+    singularName: 'amministratore';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::amministratore.amministratore'
+    > &
+      Schema.Attribute.Private;
+    Nome: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiAutoreAutore extends Struct.CollectionTypeSchema {
   collectionName: 'autores';
   info: {
@@ -966,6 +995,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::amministratore.amministratore': ApiAmministratoreAmministratore;
       'api::autore.autore': ApiAutoreAutore;
       'api::azienda.azienda': ApiAziendaAzienda;
       'api::candidato.candidato': ApiCandidatoCandidato;

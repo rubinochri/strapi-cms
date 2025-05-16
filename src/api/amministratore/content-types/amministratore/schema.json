@@ -1,0 +1,17 @@
+{
+  "kind": "collectionType",
+  "collectionName": "amministratores",
+  "info": {
+    "singularName": "amministratore",
+    "pluralName": "amministratores",
+    "displayName": "Amministratore"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "Nome": {
+      "type": "string"
+    }
+  }
+}
