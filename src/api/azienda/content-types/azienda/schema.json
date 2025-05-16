@@ -1,0 +1,17 @@
+{
+  "kind": "collectionType",
+  "collectionName": "aziendas",
+  "info": {
+    "singularName": "azienda",
+    "pluralName": "aziendas",
+    "displayName": "Azienda"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "nAzienda": {
+      "type": "string"
+    }
+  }
+}

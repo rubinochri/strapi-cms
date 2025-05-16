@@ -401,6 +401,34 @@ export interface ApiAutoreAutore extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiAziendaAzienda extends Struct.CollectionTypeSchema {
+  collectionName: 'aziendas';
+  info: {
+    displayName: 'Azienda';
+    pluralName: 'aziendas';
+    singularName: 'azienda';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::azienda.azienda'
+    > &
+      Schema.Attribute.Private;
+    nAzienda: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiCandidatoCandidato extends Struct.CollectionTypeSchema {
   collectionName: 'candidatoes';
   info: {
@@ -939,6 +967,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::autore.autore': ApiAutoreAutore;
+      'api::azienda.azienda': ApiAziendaAzienda;
       'api::candidato.candidato': ApiCandidatoCandidato;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
