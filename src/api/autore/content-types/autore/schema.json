@@ -1,0 +1,17 @@
+{
+  "kind": "collectionType",
+  "collectionName": "autores",
+  "info": {
+    "singularName": "autore",
+    "pluralName": "autores",
+    "displayName": "Autore"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "Nome": {
+      "type": "string"
+    }
+  }
+}
