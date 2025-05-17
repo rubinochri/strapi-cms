@@ -1,0 +1,52 @@
+{
+  "kind": "collectionType",
+  "collectionName": "annuncio_lavoros",
+  "info": {
+    "singularName": "annuncio-lavoro",
+    "pluralName": "annuncio-lavoros",
+    "displayName": "AnnuncioLavoro",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "titolo": {
+      "type": "string"
+    },
+    "descrizione": {
+      "type": "blocks"
+    },
+    "tipoContratto": {
+      "type": "string"
+    },
+    "luogo": {
+      "type": "string"
+    },
+    "dataPubblicazione": {
+      "type": "datetime"
+    },
+    "dataScadenza": {
+      "type": "datetime"
+    },
+    "Stato": {
+      "type": "enumeration",
+      "enum": [
+        "Aperto",
+        "Chiuso"
+      ]
+    },
+    "candidaturas": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::candidatura.candidatura",
+      "mappedBy": "annuncio_lavoro"
+    },
+    "azienda": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::azienda.azienda",
+      "inversedBy": "annuncio_lavoros"
+    }
+  }
+}

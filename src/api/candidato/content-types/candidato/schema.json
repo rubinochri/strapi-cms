@@ -4,14 +4,49 @@
   "info": {
     "singularName": "candidato",
     "pluralName": "candidatoes",
-    "displayName": "Candidato"
+    "displayName": "Candidato",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
   "attributes": {
-    "Nome": {
+    "nome": {
       "type": "string"
+    },
+    "email": {
+      "type": "email"
+    },
+    "password": {
+      "type": "password"
+    },
+    "CV": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "candidaturas": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::candidatura.candidatura",
+      "mappedBy": "candidato"
+    },
+    "competenzas": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::competenza.competenza",
+      "mappedBy": "candidato"
+    },
+    "messaggios": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::messaggio.messaggio"
     }
   }
 }

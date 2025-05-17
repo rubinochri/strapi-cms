@@ -1,0 +1,41 @@
+{
+  "kind": "collectionType",
+  "collectionName": "competenzas",
+  "info": {
+    "singularName": "competenza",
+    "pluralName": "competenzas",
+    "displayName": "Competenza",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "tipoCompetenza": {
+      "type": "string"
+    },
+    "livello": {
+      "type": "string"
+    },
+    "descrizione": {
+      "type": "blocks"
+    },
+    "documento": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "candidato": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::candidato.candidato",
+      "inversedBy": "competenzas"
+    }
+  }
+}

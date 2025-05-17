@@ -4,14 +4,46 @@
   "info": {
     "singularName": "azienda",
     "pluralName": "aziendas",
-    "displayName": "Azienda"
+    "displayName": "Azienda",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
   "attributes": {
-    "nAzienda": {
+    "ragioneSociale": {
       "type": "string"
+    },
+    "password": {
+      "type": "password"
+    },
+    "sede": {
+      "type": "string"
+    },
+    "settore": {
+      "type": "string"
+    },
+    "indirizzo": {
+      "type": "string"
+    },
+    "email": {
+      "type": "email"
+    },
+    "annuncio_lavoros": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::annuncio-lavoro.annuncio-lavoro",
+      "mappedBy": "azienda"
+    },
+    "messaggios": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::messaggio.messaggio"
+    },
+    "feedbacks": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::feedback.feedback"
     }
   }
 }

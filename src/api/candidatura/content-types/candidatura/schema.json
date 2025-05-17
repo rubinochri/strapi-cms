@@ -1,0 +1,46 @@
+{
+  "kind": "collectionType",
+  "collectionName": "candidaturas",
+  "info": {
+    "singularName": "candidatura",
+    "pluralName": "candidaturas",
+    "displayName": "Candidatura"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "dataInvio": {
+      "type": "datetime"
+    },
+    "stato": {
+      "type": "enumeration",
+      "enum": [
+        "In revisione ",
+        "Accettata",
+        "Rifiutata"
+      ]
+    },
+    "descrizioneCandidato": {
+      "type": "blocks"
+    },
+    "feedback": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::feedback.feedback",
+      "inversedBy": "candidatura"
+    },
+    "annuncio_lavoro": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::annuncio-lavoro.annuncio-lavoro",
+      "inversedBy": "candidaturas"
+    },
+    "candidato": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::candidato.candidato",
+      "inversedBy": "candidaturas"
+    }
+  }
+}

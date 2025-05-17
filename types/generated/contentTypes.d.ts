@@ -377,6 +377,7 @@ export interface ApiAmministratoreAmministratore
   extends Struct.CollectionTypeSchema {
   collectionName: 'amministratores';
   info: {
+    description: '';
     displayName: 'Amministratore';
     pluralName: 'amministratores';
     singularName: 'amministratore';
@@ -388,6 +389,7 @@ export interface ApiAmministratoreAmministratore
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    email: Schema.Attribute.Email;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -395,35 +397,53 @@ export interface ApiAmministratoreAmministratore
     > &
       Schema.Attribute.Private;
     Nome: Schema.Attribute.String;
+    password: Schema.Attribute.Password;
     publishedAt: Schema.Attribute.DateTime;
+    segnalaziones: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::segnalazione.segnalazione'
+    >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
   };
 }
 
-export interface ApiAutoreAutore extends Struct.CollectionTypeSchema {
-  collectionName: 'autores';
+export interface ApiAnnuncioLavoroAnnuncioLavoro
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'annuncio_lavoros';
   info: {
-    displayName: 'Autore';
-    pluralName: 'autores';
-    singularName: 'autore';
+    description: '';
+    displayName: 'AnnuncioLavoro';
+    pluralName: 'annuncio-lavoros';
+    singularName: 'annuncio-lavoro';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
+    azienda: Schema.Attribute.Relation<'manyToOne', 'api::azienda.azienda'>;
+    candidaturas: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::candidatura.candidatura'
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    dataPubblicazione: Schema.Attribute.DateTime;
+    dataScadenza: Schema.Attribute.DateTime;
+    descrizione: Schema.Attribute.Blocks;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
-      'api::autore.autore'
+      'api::annuncio-lavoro.annuncio-lavoro'
     > &
       Schema.Attribute.Private;
-    Nome: Schema.Attribute.String;
+    luogo: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
+    Stato: Schema.Attribute.Enumeration<['Aperto', 'Chiuso']>;
+    tipoContratto: Schema.Attribute.String;
+    titolo: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -433,6 +453,7 @@ export interface ApiAutoreAutore extends Struct.CollectionTypeSchema {
 export interface ApiAziendaAzienda extends Struct.CollectionTypeSchema {
   collectionName: 'aziendas';
   info: {
+    description: '';
     displayName: 'Azienda';
     pluralName: 'aziendas';
     singularName: 'azienda';
@@ -441,17 +462,31 @@ export interface ApiAziendaAzienda extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    annuncio_lavoros: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::annuncio-lavoro.annuncio-lavoro'
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    email: Schema.Attribute.Email;
+    feedbacks: Schema.Attribute.Relation<'oneToMany', 'api::feedback.feedback'>;
+    indirizzo: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::azienda.azienda'
     > &
       Schema.Attribute.Private;
-    nAzienda: Schema.Attribute.String;
+    messaggios: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::messaggio.messaggio'
+    >;
+    password: Schema.Attribute.Password;
     publishedAt: Schema.Attribute.DateTime;
+    ragioneSociale: Schema.Attribute.String;
+    sede: Schema.Attribute.String;
+    settore: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -461,6 +496,7 @@ export interface ApiAziendaAzienda extends Struct.CollectionTypeSchema {
 export interface ApiCandidatoCandidato extends Struct.CollectionTypeSchema {
   collectionName: 'candidatoes';
   info: {
+    description: '';
     displayName: 'Candidato';
     pluralName: 'candidatoes';
     singularName: 'candidato';
@@ -469,20 +505,223 @@ export interface ApiCandidatoCandidato extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    candidaturas: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::candidatura.candidatura'
+    >;
+    competenzas: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::competenza.competenza'
+    >;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    CV: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>;
+    email: Schema.Attribute.Email;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::candidato.candidato'
     > &
       Schema.Attribute.Private;
-    Nome: Schema.Attribute.String;
+    messaggios: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::messaggio.messaggio'
+    >;
+    nome: Schema.Attribute.String;
+    password: Schema.Attribute.Password;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+  };
+}
+
+export interface ApiCandidaturaCandidatura extends Struct.CollectionTypeSchema {
+  collectionName: 'candidaturas';
+  info: {
+    displayName: 'Candidatura';
+    pluralName: 'candidaturas';
+    singularName: 'candidatura';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    annuncio_lavoro: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::annuncio-lavoro.annuncio-lavoro'
+    >;
+    candidato: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::candidato.candidato'
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    dataInvio: Schema.Attribute.DateTime;
+    descrizioneCandidato: Schema.Attribute.Blocks;
+    feedback: Schema.Attribute.Relation<'oneToOne', 'api::feedback.feedback'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::candidatura.candidatura'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    stato: Schema.Attribute.Enumeration<
+      ['In revisione ', 'Accettata', 'Rifiutata']
+    >;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiCompetenzaCompetenza extends Struct.CollectionTypeSchema {
+  collectionName: 'competenzas';
+  info: {
+    description: '';
+    displayName: 'Competenza';
+    pluralName: 'competenzas';
+    singularName: 'competenza';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    candidato: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::candidato.candidato'
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    descrizione: Schema.Attribute.Blocks;
+    documento: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    livello: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::competenza.competenza'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    tipoCompetenza: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiFeedbackFeedback extends Struct.CollectionTypeSchema {
+  collectionName: 'feedbacks';
+  info: {
+    description: '';
+    displayName: 'Feedback';
+    pluralName: 'feedbacks';
+    singularName: 'feedback';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    candidatura: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::candidatura.candidatura'
+    >;
+    commento: Schema.Attribute.Blocks;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    data: Schema.Attribute.DateTime;
+    esito: Schema.Attribute.Enumeration<['Positivo', 'Negativo']>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::feedback.feedback'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiMessaggioMessaggio extends Struct.CollectionTypeSchema {
+  collectionName: 'messaggios';
+  info: {
+    displayName: 'Messaggio';
+    pluralName: 'messaggios';
+    singularName: 'messaggio';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    contenuto: Schema.Attribute.Blocks;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    data: Schema.Attribute.DateTime;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::messaggio.messaggio'
+    > &
+      Schema.Attribute.Private;
+    oggetto: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiSegnalazioneSegnalazione
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'segnalaziones';
+  info: {
+    description: '';
+    displayName: 'Segnalazione';
+    pluralName: 'segnalaziones';
+    singularName: 'segnalazione';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    amministratore: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::amministratore.amministratore'
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    dataSegnalazione: Schema.Attribute.DateTime;
+    descrizione: Schema.Attribute.Blocks;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::segnalazione.segnalazione'
+    > &
+      Schema.Attribute.Private;
+    oggetto: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    stato: Schema.Attribute.Enumeration<
+      ['In revisione', 'Risolta', 'Respinta']
+    >;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    users_permissions_user: Schema.Attribute.Relation<
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
   };
 }
 
@@ -973,6 +1212,10 @@ export interface PluginUsersPermissionsUser
       'manyToOne',
       'plugin::users-permissions.role'
     >;
+    segnalazione: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::segnalazione.segnalazione'
+    >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -996,9 +1239,14 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::amministratore.amministratore': ApiAmministratoreAmministratore;
-      'api::autore.autore': ApiAutoreAutore;
+      'api::annuncio-lavoro.annuncio-lavoro': ApiAnnuncioLavoroAnnuncioLavoro;
       'api::azienda.azienda': ApiAziendaAzienda;
       'api::candidato.candidato': ApiCandidatoCandidato;
+      'api::candidatura.candidatura': ApiCandidaturaCandidatura;
+      'api::competenza.competenza': ApiCompetenzaCompetenza;
+      'api::feedback.feedback': ApiFeedbackFeedback;
+      'api::messaggio.messaggio': ApiMessaggioMessaggio;
+      'api::segnalazione.segnalazione': ApiSegnalazioneSegnalazione;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

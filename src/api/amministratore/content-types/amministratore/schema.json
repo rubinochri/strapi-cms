@@ -4,7 +4,8 @@
   "info": {
     "singularName": "amministratore",
     "pluralName": "amministratores",
-    "displayName": "Amministratore"
+    "displayName": "Amministratore",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -12,6 +13,18 @@
   "attributes": {
     "Nome": {
       "type": "string"
+    },
+    "email": {
+      "type": "email"
+    },
+    "password": {
+      "type": "password"
+    },
+    "segnalaziones": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::segnalazione.segnalazione",
+      "mappedBy": "amministratore"
     }
   }
 }

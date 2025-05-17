@@ -1,0 +1,23 @@
+{
+  "kind": "collectionType",
+  "collectionName": "messaggios",
+  "info": {
+    "singularName": "messaggio",
+    "pluralName": "messaggios",
+    "displayName": "Messaggio"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "oggetto": {
+      "type": "string"
+    },
+    "contenuto": {
+      "type": "blocks"
+    },
+    "data": {
+      "type": "datetime"
+    }
+  }
+}
