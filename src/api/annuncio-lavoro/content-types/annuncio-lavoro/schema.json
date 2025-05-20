@@ -29,13 +29,6 @@
     "dataScadenza": {
       "type": "datetime"
     },
-    "Stato": {
-      "type": "enumeration",
-      "enum": [
-        "Aperto",
-        "Chiuso"
-      ]
-    },
     "candidaturas": {
       "type": "relation",
       "relation": "oneToMany",

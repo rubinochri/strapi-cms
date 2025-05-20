@@ -11,7 +11,7 @@
     "draftAndPublish": true
   },
   "attributes": {
-    "tipoCompetenza": {
+    "nome": {
       "type": "string"
     },
     "livello": {

@@ -42,11 +42,6 @@
       "relation": "oneToMany",
       "target": "api::competenza.competenza",
       "mappedBy": "candidato"
-    },
-    "messaggios": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::messaggio.messaggio"
     }
   }
 }

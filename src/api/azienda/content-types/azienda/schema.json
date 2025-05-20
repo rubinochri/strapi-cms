@@ -34,16 +34,6 @@
       "relation": "oneToMany",
       "target": "api::annuncio-lavoro.annuncio-lavoro",
       "mappedBy": "azienda"
-    },
-    "messaggios": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::messaggio.messaggio"
-    },
-    "feedbacks": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::feedback.feedback"
     }
   }
 }

@@ -4,7 +4,8 @@
   "info": {
     "singularName": "candidatura",
     "pluralName": "candidaturas",
-    "displayName": "Candidatura"
+    "displayName": "Candidatura",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -23,12 +24,6 @@
     },
     "descrizioneCandidato": {
       "type": "blocks"
-    },
-    "feedback": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::feedback.feedback",
-      "inversedBy": "candidatura"
     },
     "annuncio_lavoro": {
       "type": "relation",
